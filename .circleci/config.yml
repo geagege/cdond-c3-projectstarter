@@ -387,6 +387,7 @@ jobs:
               then
                 OldWorkflowID=$(echo $stack | awk '{split($0,a,"-"); print a[3]}')
               fi
+            done
             if [ -z ${OldWorkflowID+x} ]; then 
                echo donoting
             else
