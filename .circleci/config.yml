@@ -385,7 +385,7 @@ jobs:
             for stack in "$STACKS"; do
               if [[ $stack == *"${CIRCLE_WORKFLOW_ID:0:7}" ]]
               then
-                OldWorkflowID="${CIRCLE_WORKFLOW_ID:0:7}"
+                OldWorkflowID=$(echo $stack | awk '{split($0,a,"-"); print a[3]}')
               fi
             if [ -z ${OldWorkflowID+x} ]; then 
               # donoting
