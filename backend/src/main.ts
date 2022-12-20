@@ -36,18 +36,18 @@ async function bootstrap() {
   const whitelist = config.CORS_WHITELIST;
   const corsOptions = {
     origin(origin, callback) {
-      const isOriginAllowed = whitelist.indexOf(origin) !== -1;
-      const allowAccessAnyway = whitelist.length === 0;
-      if (isOriginAllowed || allowAccessAnyway) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
+      callback(null, true);
+      // const isOriginAllowed = whitelist.indexOf(origin) !== -1;
+      // const allowAccessAnyway = whitelist.length === 0;
+      // if (isOriginAllowed || allowAccessAnyway) {
+      //   callback(null, true);
+      // } else {
+      //   callback(new Error('Not allowed by CORS'));
+      // }
     },
   };
   app.use(cors(corsOptions));
   app.useGlobalFilters(new ErrorFilter());
-  app.enableCors();
   await app.listen(config.PORT);
   logger.log(`Listening on port ${config.PORT}.`);
 }
